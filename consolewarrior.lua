@@ -19,7 +19,7 @@ ConsoleWarrior.states.jump = {
     toIdle = {
       trigger = "time",
       guard = function(self, event)
-        return self.age > 1
+        return 1 < self.age
       end,
       destination = "idle"
     }

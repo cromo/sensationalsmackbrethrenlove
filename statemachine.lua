@@ -26,8 +26,8 @@ function StateMachine:reactTo(event)
     if (edge.trigger == nil or edge.trigger == event.type) and
        (edge.guard == nil or edge.guard(self, event)) then
 
-       print("Got this far...")
-       print(edge.destination)
+      print("Got this far...")
+      print(edge.destination)
 
       if edge.effect then
         edge.effect(event)
@@ -43,4 +43,3 @@ function StateMachine:reactTo(event)
     end
   end
 end
-

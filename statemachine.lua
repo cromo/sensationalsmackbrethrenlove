@@ -26,9 +26,6 @@ function StateMachine:reactTo(event)
     if (edge.trigger == nil or edge.trigger == event.type) and
        (edge.guard == nil or edge.guard(self, event)) then
 
-      print("Got this far...")
-      print(edge.destination)
-
       if edge.effect then
         edge.effect(event)
       end
@@ -37,7 +34,6 @@ function StateMachine:reactTo(event)
         self.previousState = self.activeState
         self.activeState = self.states[edge.destination]
         self.age = 0
-        print("State Changed!")
         return
       end
     end

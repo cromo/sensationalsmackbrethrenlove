@@ -6,6 +6,7 @@ function love.draw()
 end
 
 function love.update(dt)
+  events.cause('time', {timeDelta = dt})
   events.notify()
 end
 

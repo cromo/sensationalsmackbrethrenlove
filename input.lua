@@ -90,10 +90,10 @@ function battle.keypressed(key, unicode)
   if key == 'q' then
     cause 'input.shield'
   end
-  if key == 'e' then
+  if key == 'up' then
     cause 'input.jump'
   end
-  if key == 'f' then
+  if key == 'e' then
     cause 'input.grab'
   end
 end
@@ -107,6 +107,8 @@ function battle.keyreleased(key, unicode)
   if attackType.down[key] then
     buttonState.attackType = attackType.up[key]
   end
+
+  -- Todo(cromo): Add jump release
 end
 
 function battle.debug()

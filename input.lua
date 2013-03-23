@@ -46,6 +46,13 @@ local attackType = {}
 attackType.down = {lctrl = 'special'}
 attackType.up = {lctrl = 'attack'}
 
+local movement = {}
+movement.directions = {
+  left = 'left',
+  right = 'right',
+  down = 'down'
+}
+
 battle = {}
 
 function battle.keypressed(key, unicode)
@@ -72,6 +79,14 @@ function battle.keypressed(key, unicode)
           buttonState.tiltDirections[#buttonState.tiltDirections])
     end
   end
+
+  if movement.directions[key] then
+    if key ~= 'down' then
+      cause('input.move.' .. key)
+    end
+    -- Todo(cromo): Add crouch, drop through platforms, and fast fall cases.
+  end
+
   if key == 'q' then
     cause 'input.shield'
   end

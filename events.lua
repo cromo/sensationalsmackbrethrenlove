@@ -1,14 +1,4 @@
---[[
-Need this functionality for events to be complete:
-- receiving events (via cause)
-- queueing events
-- dispatching events
-- registering reactors
-- unregistering reactors
-]]
-
 local __ = require "underscore"
-
 module(..., package.seeall)
 
 local events = {}
@@ -42,9 +32,4 @@ end
 -- calls to reactTo(self, event).
 function unsubscribe(subscriber)
   subscribers = __(subscribers):reject(function(s) return s == subscriber end)
-end
-
-t = {}
-function t:reactTo(event)
-  print(__(event):chain():keys():join(","):value())
 end

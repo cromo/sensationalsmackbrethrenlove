@@ -21,18 +21,19 @@ function StateMachine:reactTo(event)
     self.age = self.age + event.timeDelta
   end
 
-  for key, edge in pairs(self.activeState.edges) do
+  for transitionIndex = 1, #self.activeState.edges do
+    local transition = self.activeState.edges[transitionIndex]
     
-    if (edge.trigger == nil or edge.trigger == event.type) and
-       (edge.guard == nil or edge.guard(self, event)) then
+    if (transition.trigger == nil or transition.trigger == event.type) and
+       (transition.guard == nil or transition.guard(self, event)) then
 
-      if edge.effect then
-        edge.effect(event)
+      if transition.effect then
+        transition.effect(event)
       end
 
-      if edge.destination and self.states[edge.destination] then
+      if transition.destination and self.states[transition.destination] then
         self.previousState = self.activeState
-        self.activeState = self.states[edge.destination]
+        self.activeState = self.states[transition.destination]
         self.age = 0
         return
       end

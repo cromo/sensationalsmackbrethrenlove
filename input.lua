@@ -55,11 +55,11 @@ battle = {}
 
 function battle.keypressed(key, unicode)
   quickExit(key)
-  if __.include(tilt.keys, key) then
+  if tilt.directions[key] then
     __.unshift(buttonState.tiltDirections, tilt.directions[key])
-  elseif __.include(hardness.keys, key) then
+  elseif hardness.directions[key] then
     __.unshift(buttonState.hardnessModifier, hardness.directions[key])
-  elseif __.include(attackType.keys, key) then
+  elseif attackType.types[key] then
     __.unshift(buttonState.attackType, attackType.types[key])
   elseif key == ' ' then
     -- A plain attack can't have a hardness modifier, but all directional

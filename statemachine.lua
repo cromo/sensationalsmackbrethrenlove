@@ -13,7 +13,7 @@ function StateMachine:new(o)
 end
 
 function new(o)
-  return StateMachine:new(0)
+  return StateMachine:new()
 end
 
 function StateMachine:reactTo(event)

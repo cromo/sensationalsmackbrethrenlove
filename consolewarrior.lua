@@ -5,7 +5,7 @@ ConsoleWarrior = {}
 ConsoleWarrior.states = {}
 
 ConsoleWarrior.states.idle = {
-  edges = {
+  transitions = {
     {
       name = 'toJump',
       trigger = 'input.jump',
@@ -16,7 +16,7 @@ ConsoleWarrior.states.idle = {
 }
 
 ConsoleWarrior.states.jump = {
-  edges = {
+  transitions = {
     {
       name = 'toIdle',
       trigger = "time",

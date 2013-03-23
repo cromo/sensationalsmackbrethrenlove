@@ -21,8 +21,8 @@ function StateMachine:reactTo(event)
     self.age = self.age + event.timeDelta
   end
 
-  for transitionIndex = 1, #self.activeState.edges do
-    local transition = self.activeState.edges[transitionIndex]
+  for transitionIndex = 1, #self.activeState.transitions do
+    local transition = self.activeState.transitions[transitionIndex]
     
     if (transition.trigger == nil or transition.trigger == event.type) and
        (transition.guard == nil or transition.guard(self, event)) then

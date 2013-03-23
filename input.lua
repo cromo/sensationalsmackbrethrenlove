@@ -1,11 +1,7 @@
 local __ = require "underscore"
-
+require "events"
+local cause = events.cause
 module(..., package.seeall)
-
-local status = ""
-local function cause(eventType)
-  status = eventType
-end
 
 local function quickExit(key)
   if key == 'escape' then
@@ -110,12 +106,3 @@ function battle.keyreleased(key, unicode)
 
   -- Todo(cromo): Add jump release
 end
-
-function battle.debug()
-  return status .. "\n" ..
-      "tilt: {" .. __.join(buttonState.tiltDirections, ",") .. "}\n" ..
-      "hardness: " .. buttonState.hardnessModifier .. "\n" ..
-      "type: " .. buttonState.attackType
-end
-
-debug = battle.debug

@@ -3,7 +3,6 @@ require "input"
 require "events"
 
 function love.draw()
-  love.graphics.print(input.debug(), 0, 0)
 end
 
 function love.update(dt)

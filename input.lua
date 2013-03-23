@@ -39,14 +39,12 @@ tilt.directions = {
 }
 
 local hardness = {}
-hardness.directions = {
-  lshift = 'smash'
-}
+hardness.down = {lshift = 'smash'}
+hardness.up = {lshift = 'tilt'}
 
 local attackType = {}
-attackType.types = {
-  lctrl = 'special'
-}
+attackType.down = {lctrl = 'special'}
+attackType.up = {lctrl = 'attack'}
 
 battle = {}
 
@@ -56,11 +54,11 @@ function battle.keypressed(key, unicode)
     buttonState.tiltDirections[#buttonState.tiltDirections + 1] =
         tilt.directions[key]
   end
-  if hardness.directions[key] then
-    buttonState.hardnessModifier = hardness.directions[key]
+  if hardness.down[key] then
+    buttonState.hardnessModifier = hardness.down[key]
   end
-  if attackType.types[key] then
-    buttonState.attackType = attackType.types[key]
+  if attackType.down[key] then
+    buttonState.attackType = attackType.down[key]
   end
   if key == ' ' then
     -- A plain attack can't have a hardness modifier, but all directional
@@ -88,11 +86,11 @@ end
 function battle.keyreleased(key, unicode)
   buttonState.tiltDirections =
       __.reject(buttonState.tiltDirections, equals(tilt.directions[key]))
-  if hardness.directions[key] then
-    buttonState.hardnessModifier = 'tilt'
+  if hardness.down[key] then
+    buttonState.hardnessModifier = hardness.up[key]
   end
-  if attackType.types[key] then
-    buttonState.attackType = 'attack'
+  if attackType.down[key] then
+    buttonState.attackType = attackType.up[key]
   end
 end
 

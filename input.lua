@@ -53,7 +53,8 @@ battle = {}
 function battle.keypressed(key, unicode)
   quickExit(key)
   if tilt.directions[key] then
-    __.unshift(buttonState.tiltDirections, tilt.directions[key])
+    buttonState.tiltDirections[#buttonState.tiltDirections + 1] =
+        tilt.directions[key]
   end
   if hardness.directions[key] then
     buttonState.hardnessModifier = hardness.directions[key]
@@ -70,7 +71,7 @@ function battle.keypressed(key, unicode)
       cause(
           'input.' .. buttonState.attackType .. '.' ..
           buttonState.hardnessModifier .. '.' ..
-          __.first(buttonState.tiltDirections))
+          buttonState.tiltDirections[#buttonState.tiltDirections])
     end
   end
 end

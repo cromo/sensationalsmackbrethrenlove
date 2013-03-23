@@ -31,7 +31,6 @@ local buttonState = {
 }
 
 local tilt = {}
-tilt.keys = {'w', 'a', 's', 'd'}
 tilt.directions = {
   w = 'up',
   a = 'left',
@@ -40,13 +39,11 @@ tilt.directions = {
 }
 
 local hardness = {}
-hardness.keys = {'lshift'}
 hardness.directions = {
   lshift = 'smash'
 }
 
 local attackType = {}
-attackType.keys = {'lctrl'}
 attackType.types = {
   lctrl = 'special'
 }

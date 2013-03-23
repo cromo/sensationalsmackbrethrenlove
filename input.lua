@@ -74,6 +74,15 @@ function battle.keypressed(key, unicode)
           buttonState.tiltDirections[#buttonState.tiltDirections])
     end
   end
+  if key == 'q' then
+    cause 'input.shield'
+  end
+  if key == 'e' then
+    cause 'input.jump'
+  end
+  if key == 'f' then
+    cause 'input.grab'
+  end
 end
 
 function battle.keyreleased(key, unicode)

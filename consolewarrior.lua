@@ -6,7 +6,8 @@ ConsoleWarrior.states = {}
 
 ConsoleWarrior.states.idle = {
   edges = {
-    toJump = {
+    {
+      name = 'toJump',
       trigger = 'input.jump',
       destination = "jump"
     },
@@ -16,7 +17,8 @@ ConsoleWarrior.states.idle = {
 
 ConsoleWarrior.states.jump = {
   edges = {
-    toIdle = {
+    {
+      name = 'toIdle',
       trigger = "time",
       guard = function(self, event)
         return 1 < self.age

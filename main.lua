@@ -29,7 +29,17 @@ end
 Animation = {}
 
 Animation.frameAt = function(self, t)
-  local frameOffset = self.frames[math.ceil(t % #self.frames)]
+  local frameOffset = self.frames[1]
+  local cumulativeOffsets = __.reduce(self.frames, {0}, function(memo, frame)
+    memo[#memo + 1] = memo[#memo] + frame[3]
+    return memo
+  end)
+  for i, offset in ipairs(cumulativeOffsets) do
+    if t % self.length_s < offset then
+      frameOffset = self.frames[i - 1]
+      break
+    end
+  end
   sheets[self.sheetName]:setViewportOf(self.frame, frameOffset)
 end
 
@@ -46,6 +56,9 @@ newAnimation = function(sheetName, frames)
   local o = Animation
   o.sheetName = sheetName
   o.frames = frames
+  o.length_s = __.reduce(frames, 0, function(memo, frame)
+    return memo + frame[3]
+  end)
   o.frame = love.graphics.newQuad(
       0, 0, sheets[sheetName].metatileSize[1], sheets[sheetName].metatileSize[2],
       sheets[sheetName].image:getWidth(), sheets[sheetName].image:getHeight())
@@ -55,7 +68,7 @@ end
 
 function love.load()
   newSheet("dev.animation", "test sprite sheet.png", {32, 32})
-  testAnimation = newAnimation("dev.animation", {{0, 0}, {1, 0}, {0, 1}, {1, 1}})
+  testAnimation = newAnimation("dev.animation", {{0, 0, 1}, {1, 0, 2}, {0, 1, 0.5}, {1, 1, 0.2}})
 end
 
 function love.draw()
